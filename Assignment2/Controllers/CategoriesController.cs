@@ -52,6 +52,7 @@ namespace Assignment2.Controllers
             category.Description = dto.Description.Trim();
             return Ok(category);
         }
+        // DELETE: api/categories/{id}
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Organiser")]
