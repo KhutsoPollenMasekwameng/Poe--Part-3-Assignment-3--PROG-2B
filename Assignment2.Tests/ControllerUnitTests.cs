@@ -192,7 +192,7 @@ public class ControllerUnitTests
         Assert.IsType<BadRequestObjectResult>(result);
     }
 
-    // EVENTS
+    // EVENTS --
 
     [Fact]
     public void Events_GetMissing_ReturnsNotFound()
@@ -269,7 +269,7 @@ public class ControllerUnitTests
         Assert.Single(store.Events);
     }
 
-    // ENROLMENTS
+    // ENROLMENTS yyyyyy
 
     [Fact]
     public void Enrolments_GetWithoutParticipantProfile_ReturnsNotFound()
