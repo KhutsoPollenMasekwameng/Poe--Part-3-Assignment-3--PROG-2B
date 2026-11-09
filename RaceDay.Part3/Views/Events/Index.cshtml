@@ -1,0 +1,7 @@
+@model JsonElement[]
+@{ ViewData["Title"] = "Events"; string Read(JsonElement e, string key) => e.ValueKind == JsonValueKind.Object && e.TryGetProperty(key, out var v) ? v.ToString() : ""; }
+<section class="page-banner"><div class="container py-5"><span class="eyebrow">FIND YOUR NEXT CHALLENGE</span><h1 class="display-5 fw-bold mt-2">Race events</h1><p class="text-white-50 mb-0">Browse the events provided by the RaceDay API.</p></div></section>
+<div class="container py-5">
+@if (Model.Length == 0) { <div class="empty-state"><h2>No events available</h2><p class="text-secondary">There are no events to display, or the API is currently unavailable.</p><a class="btn btn-dark" asp-controller="Home" asp-action="Index">Back home</a></div> }
+else { <div class="row g-4">@foreach (var e in Model) { var id=Read(e,"eventID"); var name=Read(e,"eventName"); var date=Read(e,"eventDate"); var place=Read(e,"location"); var status=Read(e,"status"); var fee=Read(e,"entryFee"); <div class="col-md-6 col-lg-4"><article class="event-card h-100"><div class="event-card-top"><span class="event-chip">RACE EVENT</span><span class="status-pill">@(string.IsNullOrWhiteSpace(status)?"Open":status)</span><div class="event-number">#@id</div></div><div class="p-4"><h2 class="h5 fw-bold">@name</h2><p class="text-secondary">@place</p><div class="event-meta"><span>◷ @date</span><strong>@(string.IsNullOrWhiteSpace(fee)?"Fee TBC":fee)</strong></div><a class="btn btn-dark w-100 mt-4" asp-action="Details" asp-route-id="@id">Event details</a></div></article></div> } </div> }
+</div>
